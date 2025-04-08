@@ -3,51 +3,86 @@
     <meta charset="UTF-8">
     <title>ż.co</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
     <style>
         body {
-            background-color: black;
+            font-family: 'Courier New', monospace;
+        }
+        .glow {
+            animation: ripple 2s infinite;
+        }
+        @keyframes ripple {
+            0% {
+                box-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px red;
+            }
+            50% {
+                box-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+            }
+            100% {
+                box-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px red;
+            }
+        }
+        .neon:hover {
             color: red;
-            font-family: monospace;
-            white-space: pre;
-            text-align: center;
-            margin-top: 50px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px red;
+        }
+        .ascii-art {
+            animation: glow 1.5s infinite;
+        }
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px red;
+            }
+            50% {
+                text-shadow: 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red;
+            }
+        }
+        .tilt-card {
+            transition: transform 0.1s;
         }
     </style>
 </head>
-<body>
-<pre>
-╔════════════════════════════════════════╗
-║                  <a href="https://ż.co" style="text-decoration: none; color: red">ż.co</a>                  ║
-╠════════════════════════════════════════╣
-║                                        ║
-║      ███        Where the problems     ║
-║      ▒▓▒       you didn't have are     ║
-║       ░▒              solved.          ║
-║      ░                 ż.co            ║
-║       ░                                ║
-║        ░                               ║
-║    ▒███████▒      ▄████▄   ▒█████      ║
-║    ▒ ▒ ▒ ▄▀░     ▒██▀ ▀█  ▒██▒  ██▒    ║
-║    ░ ▒ ▄▀▒░      ▒▓█    ▄ ▒██░  ██▒    ║
-║      ▄▀▒   ░     ▒▓▓▄ ▄██▒▒██   ██░    ║
-║    ▒███████▒ ██▓ ▒ ▓███▀ ░░ ████▓▒░    ║
-║    ░▒▒ ▓░▒░▒ ▒▓▒ ░ ░▒ ▒  ░░ ▒░▒░▒░     ║
-║    ░░▒ ▒ ░ ▒ ░▒    ░  ▒     ░ ▒ ▒░     ║
-║    ░ ░ ░ ░ ░ ░   ░        ░ ░ ░ ▒      ║
-║      ░ ░      ░  ░ ░          ░ ░      ║
-║    ░          ░  ░                     ║
-║                                        ║
-╠════════════════════════════════════════╣
-║                  <a href="https://ż.co" style="text-decoration: none; color: white"">ż.co</a>                  ║
-║                 <a href="https://0kb.org" style="text-decoration: none; color: white">0kb.org</a>                ║
-║               <a href="https://johnle.org" style="text-decoration: none; color: white">johnle.org</a>               ║
-╚════════════════════════════════════════╝
+<body class="bg-black text-red-500 flex items-center justify-center min-h-screen select-none">
+    <div class="text-center">
+        <div class="border-4 border-red-500 p-4 inline-block glow tilt-card" id="tilt-card">
+            <div class="border-b-4 border-red-500 pb-2 mb-2">
+                <a href="https://ż.co" class="text-red-500 no-underline neon">ż.co</a>
+            </div>
+            <div class="mb-2">
+<pre class="bold text-red-600 ascii-art">
 
-</pre>
+:::::::::::::::::::::::::::::::::::: 
+:::'###::::::::::::::::::::::::::::: 
+::: ###:::::::::::::::::::::::::::::
+:::...:::::::::::::::::::::::::::::: 
+'########:::::::'######:::'#######::
+..... ##:::::::'##... ##:'##.... ##:
+:::: ##:::::::: ##:::..:: ##:::: ##:
+::: ##::::::::: ##::::::: ##:::: ##:
+:: ##:::::::::: ##::::::: ##:::: ##:
+: ##::::::'###: ##::: ##: ##:::: ##:
+ ########: ###:. ######::. #######::
+........::...:::......::::.......:::
+
+</pre>      
+            </div>
+            <div class="border-t-4 border-red-500 pt-2">
+                <a href="https://ż.co" class="text-white no-underline neon">ż.co</a>
+                <br>
+                <a href="https://0kb.org" class="text-white no-underline neon">0kb.org</a>
+                <br>
+                <a href="https://johnle.org" class="text-white no-underline neon">johnle.org</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const card = document.getElementById('tilt-card');
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.clientX) / 25;
+            const y = (window.innerHeight / 2 - e.clientY) / 25;
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+    </script>
 </body>
 </html>
