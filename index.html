@@ -44,13 +44,13 @@
     </style>
 </head>
 <body class="bg-black text-red-500 flex items-center justify-center min-h-screen select-none">
-    <div class="text-center">
+    <div class="text-center max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
         <div class="border-4 border-red-500 p-4 inline-block glow tilt-card" id="tilt-card">
             <div class="border-b-4 border-red-500 pb-2 mb-2">
-                <a href="https://ż.co" class="text-red-500 no-underline neon">ż.co</a>
+                <a href="https://ż.co" class="text-red-500 no-underline neon text-2xl sm:text-3xl md:text-4xl">ż.co</a>
             </div>
             <div class="mb-2">
-<pre class="bold text-red-600 ascii-art">
+<pre class="bold text-red-600 ascii-art text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl">
 
 :::::::::::::::::::::::::::::::::::: 
 :::'###::::::::::::::::::::::::::::: 
@@ -68,20 +68,31 @@
 </pre>      
             </div>
             <div class="border-t-4 border-red-500 pt-2">
-                <a href="https://ż.co" class="text-white no-underline neon">ż.co</a>
+                <a href="https://ż.co" class="text-white no-underline neon text-sm sm:text-base md:text-lg">ż.co</a>
                 <br>
-                <a href="https://0kb.org" class="text-white no-underline neon">0kb.org</a>
+                <a href="https://0kb.org" class="text-white no-underline neon text-sm sm:text-base md:text-lg">0kb.org</a>
                 <br>
-                <a href="https://johnle.org" class="text-white no-underline neon">johnle.org</a>
+                <a href="https://johnle.org" class="text-white no-underline neon text-sm sm:text-base md:text-lg">johnle.org</a>
             </div>
         </div>
     </div>
     <script>
         const card = document.getElementById('tilt-card');
+        const handleTilt = (x, y) => {
+            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        };
+
         document.addEventListener('mousemove', (e) => {
             const x = (window.innerWidth / 2 - e.clientX) / 25;
             const y = (window.innerHeight / 2 - e.clientY) / 25;
-            card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            handleTilt(x, y);
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            const x = (window.innerWidth / 2 - touch.clientX) / 25;
+            const y = (window.innerHeight / 2 - touch.clientY) / 25;
+            handleTilt(x, y);
         });
     </script>
 </body>
